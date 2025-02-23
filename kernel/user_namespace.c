@@ -680,8 +680,8 @@ static ssize_t map_write(struct file *file, const char __user *buf,
 	/*
 	 * Adjusting namespace settings requires capabilities on the target.
 	 */
-	//if (cap_valid(cap_setid) && !file_ns_capable(file, ns, CAP_SYS_ADMIN))
-		//goto out;
+	if (cap_valid(cap_setid) && !file_ns_capable(file, ns, CAP_SYS_ADMIN))
+		goto out;
 
 	/* Only allow < page size writes at the beginning of the file */
 	ret = -EINVAL;
