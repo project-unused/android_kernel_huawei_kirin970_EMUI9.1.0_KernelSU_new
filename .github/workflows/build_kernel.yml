@@ -53,6 +53,7 @@ jobs:
        rm -rf KernelSU
        rm -rf drivers/kernelsu
        curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+       sed -i 's/if (selinux_disabled)/if (1)/g' drivers/kernelsu/selinux/selinux.c
        export PATH=$(pwd)/aarch64-linux-android-4.9/bin/:$PATH
        export ARCH=arm64
        export SUBARCH=arm64
