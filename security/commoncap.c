@@ -119,7 +119,10 @@ int cap_capable(const struct cred *cred, struct user_namespace *targ_ns,
 		int cap, int audit)
 {
 	int ret = __cap_capable(cred, targ_ns, cap, audit);
-
+    // 添加以下逻辑：如果是用户命名空间操作且检查 CAP_SYS_ADMIN，直接放行
+        if (cap == CAP_SYS_ADMIN && targ_ns != &init_user_ns) {
+            return 0;
+        }
 #ifdef CONFIG_ANDROID_PARANOID_NETWORK
 	if (ret != 0 && cap == CAP_NET_RAW && in_egroup_p(AID_NET_RAW)) {
 		printk("Process %s granted CAP_NET_RAW from Android group net_raw.\n", current->comm);
