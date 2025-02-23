@@ -95,8 +95,8 @@ int __cap_capable(const struct cred *cred, struct user_namespace *targ_ns,
 			return cap_raised(cred->cap_effective, cap) ? 0 : -EPERM;
 
 		/* Have we tried all of the parent namespaces? */
-		if (ns == &init_user_ns)
-			return -EPERM;
+		//if (ns == &init_user_ns)
+			//return -EPERM;
 
 		/* 
 		 * The owner of the user namespace in the parent of the
