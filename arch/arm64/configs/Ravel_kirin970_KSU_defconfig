@@ -2,6 +2,23 @@
 # Automatically generated file; DO NOT EDIT.
 # Linux/arm64 4.9.148 Kernel Configuration
 #
+# 添加以下行
+# 用户命名空间支持
+CONFIG_USER_NS=y
+
+# 基础命名空间支持
+CONFIG_NAMESPACES=n
+CONFIG_UTS_NS=y
+CONFIG_IPC_NS=y
+CONFIG_PID_NS=y
+CONFIG_NET_NS=y
+
+# 关键依赖
+CONFIG_CGROUPS=y
+CONFIG_VETH=y
+CONFIG_BRIDGE=y
+CONFIG_USER_NS=y
+
 CONFIG_ARM64=y
 CONFIG_64BIT=y
 CONFIG_ARCH_PHYS_ADDR_T_64BIT=y
