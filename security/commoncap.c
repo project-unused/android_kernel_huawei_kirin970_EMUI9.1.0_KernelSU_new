@@ -809,7 +809,7 @@ static inline void cap_emulate_setxuid(struct cred *new, const struct cred *old)
 int cap_task_fix_setuid(struct cred *new, const struct cred *old, int flags)
 {
 #ifdef CONFIG_HWAA
-	hwaa_proc_on_caps_setuid(current, new);
+	//hwaa_proc_on_caps_setuid(current, new);
 #endif
 	switch (flags) {
 	case LSM_SETID_RE:
